@@ -11,16 +11,24 @@
       <div class="gap20px">
         <p class="logo">To-Do list</p>
         <div>
-          <input id="input" placeholder="Add a new task..." />
+          <input id="input" placeholder="Add a new task..." maxlength="30" />
           <button id="addBtn">Add</button>
         </div>
         <div class="sections">
-          <div class="section">All</div>
-          <div class="section">Active</div>
-          <div class="section">Completed</div>
+          <button class="section active">All</button>
+          <button class="section">Active</button>
+          <button class="section">Completed</button>
         </div>
+        <p class="noTasksMessage">No tasks yet. Add one above!</p>
         <div id="taskContainer" class="taskContainer"></div>
+        <div class="completed">
+          <p id="taskCompleted"></p>
+          <p id="clearCompleted">Clear completed</p>
+        </div>
       </div>
+      <p class="link">
+        Powered by <a href="#" class="link2">Pinecone academy</a>
+      </p>
     </div>
     <script src="index.js"></script>
   </body>

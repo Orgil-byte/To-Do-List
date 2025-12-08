@@ -17,7 +17,7 @@ body {
   box-shadow: 0px 0px 12px 0px #00000029;
   margin-top: 80px;
   background-color: #ffffff;
-  gap: 40px;
+  gap: 28px;
   padding: 24px 16px;
 }
 .gap20px {
@@ -51,6 +51,9 @@ body {
   line-height: 100%;
   letter-spacing: 0%;
   border: 1px solid var(--border-border-border, #e4e4e7);
+}
+#input:focus {
+  outline: 2px solid #3c82f6;
 }
 #addBtn {
   background-color: #3c82f6;
@@ -95,6 +98,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  border: none;
+  transition: 0.2s ease;
+}
+.section.active {
+  background-color: #3c82f6;
+  color: #ffffff;
 }
 .taskContainer {
   display: flex;
@@ -137,6 +146,9 @@ body {
   letter-spacing: 0%;
   color: #000000;
 }
+.decorationLine {
+  text-decoration-line: line-through;
+}
 .task_delete {
   width: 67;
   height: 30;
@@ -156,4 +168,55 @@ body {
   line-height: 100%;
   letter-spacing: 0%;
   color: #ef4444;
+}
+.link {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+.link2 {
+  text-decoration: none;
+  color: #3b73ed;
+}
+.noTasksMessage {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  color: #6b7280;
+  margin-top: 12px;
+}
+.completed {
+  display: none;
+  width: 345;
+  height: 37;
+  justify-content: space-between;
+  padding-top: 16px;
+  padding-bottom: 4px;
+  border-top: 1px solid var(--border-border-border, #e4e4e7);
+}
+#clearCompleted {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #ef4444;
+}
+#taskCompleted {
+  font-family: Inter, sans-serif;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #6b7280;
 }
