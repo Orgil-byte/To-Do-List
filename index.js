@@ -1,5 +1,4 @@
 const input = document.querySelector(`#input`);
-const addElement = document.querySelector(`#addBtn`);
 const taskContainer = document.querySelector(`#taskContainer`);
 const noTasksMessage = document.querySelector(`.noTasksMessage`);
 const sectionCategoryBtn = document.querySelectorAll(`.section`);
@@ -23,26 +22,27 @@ const add = () => {
     return null;
   } else {
     tasks.push(task);
-    noTasksMessage.style.display = "none";
-    completedText.style.display = "flex";
+    noTasksMessage.style.display = `none`;
+    completedText.style.display = `flex`;
   }
   taskId++;
   clearInput();
   renderTasks();
+  updateCompletedCount();
 };
 
 //Inner html, hmtl-ruu shide
 
 const renderTasks = () => {
-  let taskElementsHtml = "";
+  let taskElementsHtml = ``;
 
-  if (sectionCategory === "active") {
+  if (sectionCategory === `active`) {
     tasksActiveComplete = tasks.filter((task) => !task.isComplete);
   }
-  if (sectionCategory === "completed") {
+  if (sectionCategory === `completed`) {
     tasksActiveComplete = tasks.filter((task) => task.isComplete);
   }
-  if (sectionCategory === "all") {
+  if (sectionCategory === `all`) {
     tasksActiveComplete = tasks;
   }
 
@@ -56,13 +56,14 @@ const renderTasks = () => {
 const deleteTask = (taskId) => {
   tasks = tasks.filter((task) => task.id !== taskId);
   if (tasks.length === 0) {
-    noTasksMessage.style.display = "block";
-    completedText.style.display = "none";
+    noTasksMessage.style.display = `block`;
+    completedText.style.display = `none`;
   } else {
     updateCompletedCount();
   }
   renderTasks();
 };
+
 //checkmark darahad bichgiig zuraastai bolgono.
 const toggle = (taskId) => {
   tasks = tasks.map((task) => {
@@ -79,30 +80,31 @@ const updateCompletedCount = () => {
   const completedCount = tasks.filter((task) => task.isComplete).length;
   taskCompleted.textContent = `${completedCount} of ${tasks.length} tasks completed`;
 };
-//active completed
+//*********active completed***********//
+//ungu soligdono. Fontnii ungu bolon backgroundnii ungu darhad soligdono..
 const updateActiveButton = (index) => {
-  sectionCategoryBtn.forEach((btn, i) => {
-    if (i === index) {
-      btn.classList.add("active");
+  sectionCategoryBtn.forEach((btn, id) => {
+    if (id === index) {
+      btn.classList.add(`active`);
     } else {
-      btn.classList.remove("active");
+      btn.classList.remove(`active`);
     }
   });
 };
 const section = () => {
-  sectionCategory = "all";
+  sectionCategory = `all`;
   updateActiveButton(0);
   renderTasks();
 };
 
 const sectionActive = () => {
-  sectionCategory = "active";
+  sectionCategory = `active`;
   updateActiveButton(1);
   renderTasks();
 };
 
 const sectionCompleted = () => {
-  sectionCategory = "completed";
+  sectionCategory = `completed`;
   updateActiveButton(2);
   renderTasks();
 };
@@ -123,7 +125,7 @@ const createTaskElement = (task) => {
         })">Delete</button>
     </div>`;
 };
-
+// Automataar input clear hiigdene.
 const clearInput = () => {
-  input.value = "";
+  input.value = ``;
 };
