@@ -30,7 +30,7 @@ const add = () => {
   renderTasks();
 };
 
-//Inner html, hmtl-iig uurchilnu
+//Inner html, hmtl-ruu shide
 
 const renderTasks = () => {
   let taskElementsHtml = "";
@@ -45,7 +45,7 @@ const renderTasks = () => {
 //List ustgah
 const deleteTask = (taskId) => {
   tasks = tasks.filter((task) => task.id !== taskId);
-  if (tasks.length === "0") {
+  if (tasks.length === 0) {
     noTasksMessage.style.display = "block";
     completedText.style.display = "none";
   } else {
@@ -68,6 +68,17 @@ const toggle = (taskId) => {
 const updateCompletedCount = () => {
   const completedCount = tasks.filter((task) => task.isComplete).length;
   taskCompleted.textContent = `${completedCount} of ${tasks.length} tasks completed`;
+  console.log(tasks.filter((task) => task.isComplete));
+};
+//active completed
+const sectionCompleted = () => {
+  const completedTasks = tasks.filter((task) => task.isComplete);
+  renderTasks();
+};
+const sectionActive = () => {
+  const activeTasks = tasks.filter((task) => !task.isComplete);
+  console.log(activeTasks);
+  renderTasks();
 };
 
 //Html-d nemeh listiin code
@@ -90,5 +101,3 @@ const createTaskElement = (task) => {
 const clearInput = () => {
   input.value = "";
 };
-
-//Button click deer functionaa nemsen.

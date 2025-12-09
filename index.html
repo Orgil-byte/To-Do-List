@@ -15,9 +15,11 @@
           <button id="addBtn" onclick="add()">Add</button>
         </div>
         <div class="sections">
-          <button class="section active">All</button>
-          <button class="section">Active</button>
-          <button class="section">Completed</button>
+          <button class="section active" onclick="section()">All</button>
+          <button class="section" onclick="sectionActive()">Active</button>
+          <button class="section" onclick="sectionCompleted()">
+            Completed
+          </button>
         </div>
         <p class="noTasksMessage">No tasks yet. Add one above!</p>
         <div id="taskContainer" class="taskContainer"></div>
