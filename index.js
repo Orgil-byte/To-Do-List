@@ -7,6 +7,7 @@ const noTasksMessage = document.querySelector(`.noTasksMessage`);
 const sectionCategoryBtn = document.querySelectorAll(`.section`);
 const completedText = document.querySelector(`.completed`);
 const taskCompleted = document.querySelector(`#taskCompleted`);
+const toggleTask = document.querySelector(`.task_text`);
 
 let tasks = [];
 let taskId = 1;
@@ -45,59 +46,32 @@ const renderTasks = () => {
   });
   taskContainer.innerHTML = taskElementsHtml;
 };
+//List ustgah
+const deleteTask = (taskId) => {
+  const updatedTasks = tasks.filter((task) => task.id !== taskId);
+  tasks = updatedTasks;
+  renderTasks();
+};
 
+//checkmark darahad bichgiig zuraastai bolgono.
+const toggle = tasks.map((task) => {
+  if (task.id === taskId) {
+    toggleTask.classList.add(`decorationLine`);
+  }
+});
 //Html-d nemeh listiin code
 const createTaskElement = (task) => {
   return `<div class="task" data-id="${task.id}">
       <div class="checkAndName">
-        <input type="checkbox" name="checkbox" class="task_checkbox" ${
-          task.isComplete && "checked"
-        }/>
+        <input type="checkbox" name="checkbox" class="task_checkbox" onclick = "toggle(${
+          task.id
+        })"${task.isComplete && "checked"}/>
         <p class="task_text">${task.text}</p>
      </div>
-        <button class="task_delete">Delete</button>
+        <button class="task_delete" onclick = "deleteTask(${
+          task.id
+        })">Delete</button>
     </div>`;
-};
-
-//All Active Completed  ungu solino
-const changeSection = (e) => {
-  sectionCategoryBtn.forEach((btn) => {
-    btn.classList.remove("active");
-  });
-
-  e.target.classList.add("active");
-};
-
-//Check mark darahad  task_text deeree zuraastai bolno.
-const toggleTaskComplete = (e) => {
-  if (e.target.classList.contains("task_checkbox")) {
-    const idToToggle = Number(e.target.parentElement.dataset.id);
-    const toggleIndex = tasks.findIndex((task) => task.id === idToToggle);
-    if (toggleIndex) {
-      const taskText = taskElement.querySelector(".task_text");
-      taskText.classList.toggle("decorationLine");
-      renderTasks();
-    }
-
-    console.log(taskText);
-  }
-};
-
-//List ustgana.
-const deleteTask = (e) => {
-  if (e.target.classList.contains("task_delete")) {
-    const idToDelete = Number(e.target.parentElement.dataset.id);
-    const index = tasks.findIndex((task) => task.id === idToDelete);
-    if (index !== -1) {
-      tasks.splice(index, 1);
-      renderTasks();
-      taskCompleted.textContent = `x of ${tasks.length} tasks completed`;
-    }
-    if (tasks.length === 0) {
-      noTasksMessage.style.display = "block";
-      completedText.style.display = "none";
-    }
-  }
 };
 
 const clearInput = () => {
@@ -105,9 +79,3 @@ const clearInput = () => {
 };
 
 //Button click deer functionaa nemsen.
-const addCount = addElement.addEventListener(`click`, add);
-sectionCategoryBtn.forEach((btn) => {
-  btn.addEventListener(`click`, changeSection);
-});
-// taskContainer.addEventListener(`click`, toggleTaskComplete);
-taskContainer.addEventListener(`click`, deleteTask);
