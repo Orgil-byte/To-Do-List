@@ -6,9 +6,9 @@ const task = document.querySelector(`.task`);
 const noTasksMessage = document.querySelector(`.noTasksMessage`);
 const sectionCategoryBtn = document.querySelectorAll(`.section`);
 const completedText = document.querySelector(`.completed`);
+const taskCompleted = document.querySelector(`#taskCompleted`);
 
-const tasks = [];
-
+let tasks = [];
 let taskId = 1;
 
 // Add button list nemne
@@ -27,7 +27,7 @@ const add = () => {
     noTasksMessage.style.display = "none";
     completedText.style.display = "flex";
   }
-
+  taskCompleted.textContent = `x of ${tasks.length} tasks completed`;
   taskId++;
   clearInput();
   renderTasks();
@@ -43,7 +43,6 @@ const renderTasks = () => {
 
     taskElementsHtml += taskElement;
   });
-  console.log(taskElementsHtml);
   taskContainer.innerHTML = taskElementsHtml;
 };
 
@@ -72,9 +71,15 @@ const changeSection = (e) => {
 //Check mark darahad  task_text deeree zuraastai bolno.
 const toggleTaskComplete = (e) => {
   if (e.target.classList.contains("task_checkbox")) {
-    const taskElement = e.target.parentElement.parentElement;
-    const taskText = taskElement.querySelector(".task_text");
-    taskText.classList.toggle("decorationLine");
+    const idToToggle = Number(e.target.parentElement.dataset.id);
+    const toggleIndex = tasks.findIndex((task) => task.id === idToToggle);
+    if (toggleIndex) {
+      const taskText = taskElement.querySelector(".task_text");
+      taskText.classList.toggle("decorationLine");
+      renderTasks();
+    }
+
+    console.log(taskText);
   }
 };
 
@@ -86,6 +91,7 @@ const deleteTask = (e) => {
     if (index !== -1) {
       tasks.splice(index, 1);
       renderTasks();
+      taskCompleted.textContent = `x of ${tasks.length} tasks completed`;
     }
     if (tasks.length === 0) {
       noTasksMessage.style.display = "block";
@@ -98,12 +104,10 @@ const clearInput = () => {
   input.value = "";
 };
 
-//"x of y tasks completed" hiine.
-
 //Button click deer functionaa nemsen.
 const addCount = addElement.addEventListener(`click`, add);
-taskContainer.addEventListener(`click`, deleteTask);
 sectionCategoryBtn.forEach((btn) => {
   btn.addEventListener(`click`, changeSection);
 });
 taskContainer.addEventListener(`click`, toggleTaskComplete);
+taskContainer.addEventListener(`click`, deleteTask);
