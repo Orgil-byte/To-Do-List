@@ -8,6 +8,7 @@ const taskCompleted = document.querySelector(`#taskCompleted`);
 
 let tasks = [];
 let taskId = 1;
+let sectionCategory = `all`;
 
 // Add button list nemne
 const add = () => {
@@ -35,9 +36,18 @@ const add = () => {
 const renderTasks = () => {
   let taskElementsHtml = "";
 
-  tasks.forEach((task) => {
-    const taskElement = createTaskElement(task);
+  if (sectionCategory === "active") {
+    tasksActiveComplete = tasks.filter((task) => !task.isComplete);
+  }
+  if (sectionCategory === "completed") {
+    tasksActiveComplete = tasks.filter((task) => task.isComplete);
+  }
+  if (sectionCategory === "all") {
+    tasksActiveComplete = tasks;
+  }
 
+  tasksActiveComplete.forEach((task) => {
+    const taskElement = createTaskElement(task);
     taskElementsHtml += taskElement;
   });
   taskContainer.innerHTML = taskElementsHtml;
@@ -68,16 +78,32 @@ const toggle = (taskId) => {
 const updateCompletedCount = () => {
   const completedCount = tasks.filter((task) => task.isComplete).length;
   taskCompleted.textContent = `${completedCount} of ${tasks.length} tasks completed`;
-  console.log(tasks.filter((task) => task.isComplete));
 };
 //active completed
-const sectionCompleted = () => {
-  const completedTasks = tasks.filter((task) => task.isComplete);
+const updateActiveButton = (index) => {
+  sectionCategoryBtn.forEach((btn, i) => {
+    if (i === index) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+  });
+};
+const section = () => {
+  sectionCategory = "all";
+  updateActiveButton(0);
   renderTasks();
 };
+
 const sectionActive = () => {
-  const activeTasks = tasks.filter((task) => !task.isComplete);
-  console.log(activeTasks);
+  sectionCategory = "active";
+  updateActiveButton(1);
+  renderTasks();
+};
+
+const sectionCompleted = () => {
+  sectionCategory = "completed";
+  updateActiveButton(2);
   renderTasks();
 };
 
