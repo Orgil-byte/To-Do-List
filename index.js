@@ -109,5 +109,5 @@ const addCount = addElement.addEventListener(`click`, add);
 sectionCategoryBtn.forEach((btn) => {
   btn.addEventListener(`click`, changeSection);
 });
-taskContainer.addEventListener(`click`, toggleTaskComplete);
+// taskContainer.addEventListener(`click`, toggleTaskComplete);
 taskContainer.addEventListener(`click`, deleteTask);
