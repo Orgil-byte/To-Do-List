@@ -208,6 +208,7 @@ body {
   font-style: Regular;
   font-size: 14px;
   color: #ef4444;
+  cursor: pointer;
 }
 #taskCompleted {
   font-family: Inter, sans-serif;

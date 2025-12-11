@@ -19,6 +19,7 @@ const add = () => {
     isComplete: false,
   };
   if (inputText === "") {
+    window.alert(`Please enter a task!`);
     return null;
   } else {
     tasks.push(task);
@@ -61,6 +62,20 @@ const deleteTask = (taskId) => {
   } else {
     updateCompletedCount();
   }
+  renderTasks();
+};
+//Clear completed
+const clearCompleted = () => {
+  let result = window.confirm(
+    `Are sure you want to delete all completed tasks?`
+  );
+  if (result === true) {
+    tasks = tasks.filter((task) => !task.isComplete);
+  } else {
+    return null;
+  }
+
+  updateCompletedCount();
   renderTasks();
 };
 
