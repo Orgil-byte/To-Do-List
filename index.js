@@ -55,7 +55,15 @@ const renderTasks = () => {
 };
 //List ustgah
 const deleteTask = (taskId) => {
-  tasks = tasks.filter((task) => task.id !== taskId);
+  let resultDelete = window.confirm(
+    `Are you sure you want to delete this task?`
+  );
+  if (resultDelete === true) {
+    tasks = tasks.filter((task) => task.id !== taskId);
+  } else if (resultDelete === false) {
+    return null;
+  }
+
   if (tasks.length === 0) {
     noTasksMessage.style.display = `block`;
     completedText.style.display = `none`;
@@ -66,10 +74,10 @@ const deleteTask = (taskId) => {
 };
 //Clear completed
 const clearCompleted = () => {
-  let result = window.confirm(
-    `Are sure you want to delete all completed tasks?`
+  let resultClear = window.confirm(
+    `Are you sure you want to clear all completed tasks?`
   );
-  if (result === true) {
+  if (resultClear === true) {
     tasks = tasks.filter((task) => !task.isComplete);
   } else {
     return null;

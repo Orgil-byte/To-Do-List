@@ -72,8 +72,11 @@ body {
   line-height: 100%;
   letter-spacing: 0%;
   color: #f9f9f9;
+  cursor: pointer;
 }
-
+#addBtn:active {
+  transform: scale(1.075);
+}
 .sections {
   display: flex;
   gap: 6px;
@@ -96,6 +99,7 @@ body {
   align-items: center;
   border: none;
   transition: 0.2s ease;
+  cursor: pointer;
 }
 .section.active {
   background-color: #3c82f6;
@@ -119,6 +123,7 @@ body {
   justify-content: space-between;
   align-items: center;
   transition: all 0.3s ease-out;
+  cursor: pointer;
 }
 .checkAndName {
   display: flex;
@@ -131,6 +136,7 @@ body {
   border-radius: 2px;
   border: 1px solid #767676;
   background-color: #ffffff;
+  cursor: pointer;
 }
 .task_text {
   font-family: Inter, sans-serif;
@@ -160,6 +166,7 @@ body {
   color: #ef4444;
   opacity: 0;
   transition: all 0.3s ease-out;
+  cursor: pointer;
 }
 .task:hover {
   background-color: #f3f4f6;
